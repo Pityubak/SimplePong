@@ -5,7 +5,9 @@
  */
 package swingmappa;
 
-import com.pityubak.swinglibrary.SwingBuilder;
+import com.pityubak.gamelibrary.GameBuilder;
+
+
 
 /**
  *
@@ -19,7 +21,7 @@ public class SwingMappa {
     public static void main(String[] args) {
 
         
-        SwingBuilder builder = new SwingBuilder(new Class<?>[]{MainWindow.class, MainMenu.class, Settings.class});
+        GameBuilder builder = new GameBuilder(new Class<?>[]{MainWindow.class, MainMenu.class, Settings.class});
    
       
 

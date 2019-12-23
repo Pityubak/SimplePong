@@ -5,25 +5,23 @@
  */
 package swingmappa;
 
+import com.pityubak.gamelibrary.annotations.Action;
+import com.pityubak.gamelibrary.annotations.Binding;
+import com.pityubak.gamelibrary.annotations.Entity;
+import com.pityubak.gamelibrary.annotations.Label;
+import com.pityubak.gamelibrary.annotations.Observeable;
+import com.pityubak.gamelibrary.annotations.Panel;
+import com.pityubak.gamelibrary.annotations.Window;
+import com.pityubak.gamelibrary.components.RunnableComponent;
+import com.pityubak.gamelibrary.components.SwingEntity;
+import com.pityubak.gamelibrary.components.SwingFrame;
+import com.pityubak.gamelibrary.components.SwingPanel;
+import com.pityubak.gamelibrary.misc.ColorType;
+import com.pityubak.gamelibrary.misc.DrawingType;
+import com.pityubak.gamelibrary.misc.PredefinedAction;
 import com.pityubak.liberator.data.RuntimeObject;
-import com.pityubak.swinglibrary.annotations.Action;
-import com.pityubak.swinglibrary.annotations.Actions;
-import com.pityubak.swinglibrary.annotations.Binding;
-import com.pityubak.swinglibrary.annotations.Bindings;
-import com.pityubak.swinglibrary.annotations.Entity;
-import com.pityubak.swinglibrary.annotations.Label;
-import com.pityubak.swinglibrary.annotations.Observeable;
-import com.pityubak.swinglibrary.annotations.Panel;
+import com.pityubak.gamelibrary.service.ColorConvertService;
 
-import com.pityubak.swinglibrary.annotations.Window;
-import com.pityubak.swinglibrary.components.RunnableComponent;
-import com.pityubak.swinglibrary.components.SwingEntity;
-import com.pityubak.swinglibrary.components.SwingFrame;
-import com.pityubak.swinglibrary.components.SwingPanel;
-import com.pityubak.swinglibrary.misc.ColorType;
-import com.pityubak.swinglibrary.misc.DrawingType;
-import com.pityubak.swinglibrary.misc.PredefinedAction;
-import com.pityubak.swinglibrary.service.ColorConvertService;
 import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
 
@@ -39,31 +37,26 @@ public class MainWindow implements RunnableComponent {
     @Window(title = "Fuck yeah", defaultCloseOperation = javax.swing.WindowConstants.EXIT_ON_CLOSE,
             undecorated = true, width = 800, height = 640)
     private SwingFrame frame;
-    @Bindings({
-        @Binding(actionType = PredefinedAction.UP_MOVE, speed = 20, actionName = "moveUpY"),
-        @Binding(actionType = PredefinedAction.DOWN_MOVE, speed = 20, actionName = "moveDownY")})
-    @Entity(x = 10, y = 350, color = ColorType.DARK_SLATE_GRAY, width = 20, height = 200, draw = DrawingType.FILL_RECT)
 
+    @Binding(actionType = PredefinedAction.UP_MOVE, speed = 20, actionName = "moveUpY")
+    @Binding(actionType = PredefinedAction.DOWN_MOVE, speed = 20, actionName = "moveDownY")
+    @Entity(x = 10, y = 350, color = ColorType.DARK_SLATE_GRAY, width = 20, height = 200, draw = DrawingType.FILL_RECT)
     private SwingEntity paddleY;
+    
     @Entity(x = 730, y = 100, color = ColorType.DARK_SLATE_GRAY, width = 20, height = 200,
             xDir = 1, yDir = 1, draw = DrawingType.FILL_RECT)
-    @Bindings({
-        @Binding(actionType = PredefinedAction.UP_MOVE, speed = 20, actionName = "moveUpX"),
-        @Binding(actionType = PredefinedAction.DOWN_MOVE, speed = 20, actionName = "moveDownX")})
+    @Binding(actionType = PredefinedAction.UP_MOVE, speed = 20, actionName = "moveUpX")
+    @Binding(actionType = PredefinedAction.DOWN_MOVE, speed = 20, actionName = "moveDownX")
     private SwingEntity paddleX;
 
     @Panel(fgColor = ColorType.STEEL_BLUE, bgColor = ColorType.STEEL_BLUE, draggable = true)
-    @Bindings({
-        @Binding(actionType = PredefinedAction.LEVEL, parent = "frame", targetName = "popUp",
-                actionName = "pause", targetVar = "isPause")})
-    @Actions({
-        @Action(key = KeyEvent.VK_W, actionName = "simpleXUp", action = "moveUpY"),
-        @Action(key = KeyEvent.VK_S, actionName = "simpleXDown", action = "moveDownY"),
-        @Action(key = KeyEvent.VK_UP, actionName = "simpleYUp", action = "moveUpX"),
-        @Action(key = KeyEvent.VK_DOWN, actionName = "simpleYDown", action = "moveDownX"),
-        @Action(key = KeyEvent.VK_ESCAPE, actionName = "showPanel", action = "pause")
-    }
-    )
+    @Binding(actionType = PredefinedAction.LEVEL, parent = "frame", targetName = "popUp",
+            actionName = "pause", targetVar = "isPause")
+    @Action(key = KeyEvent.VK_W, actionName = "simpleXUp", action = "moveUpY")
+    @Action(key = KeyEvent.VK_S, actionName = "simpleXDown", action = "moveDownY")
+    @Action(key = KeyEvent.VK_UP, actionName = "simpleYUp", action = "moveUpX")
+    @Action(key = KeyEvent.VK_DOWN, actionName = "simpleYDown", action = "moveDownX")
+    @Action(key = KeyEvent.VK_ESCAPE, actionName = "showPanel", action = "pause")
     private SwingPanel panel;
 
     @Label(width = 50, height = 20, text = "0",
